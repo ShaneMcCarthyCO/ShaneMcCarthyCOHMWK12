@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
-const { removeemployee } = require(".");
+const removeemployee = require("./DB");
 
 function EmployeeStatus() {
     console.log("Welcome to the Employee Management System")
@@ -29,7 +29,7 @@ function EmployeeStatus() {
                         addRole();
                         break;
                     case "Add Employee":
-                        addQuestions()
+                        addemployee()
                         break;
                     case "View Departments":
                         viewDepartments();
@@ -44,7 +44,7 @@ function EmployeeStatus() {
                         updateRole();
                         break;
                     case "Remove Employee":
-                        removeemployee();
+                        removeEmployee();
                         break;
                     case "Exit":
                         connection.end();
@@ -64,8 +64,8 @@ function addQuestions(){
     EmployeeStatus()
 }
 
-function removeemployee(){
-    const Employees = db.findAllEmployees()
+function removeEmployee(){
+    const Employees = removeemployee.findAllEmployees()
     const employeechoice = Employees.map(({id,first_name, last_name}) =>({
         name:`${first_name}${last_name}`,
         value:id
@@ -79,12 +79,12 @@ function removeemployee(){
             choices:employeechoice
         }
     ])
-    db.removeemployee(employeeid)
+    removeemployee.removeemployee(employeeid)
     EmployeeStatus()
 }
 
 function updateRole(){
-    const Employees = db.findAllEmployees()
+    const Employees = removeemployee.findAllEmployees()
     const employeechoice = Employees.map(({id,first_name, last_name}) =>({
         name:`${first_name}${last_name}`,
         value:id
@@ -98,7 +98,7 @@ function updateRole(){
             choices:employeechoice
         }
     ])
-   const roles = db.findAllRoles()
+   const roles = removeemployee.findAllRoles()
    const rolechoice = roles.map(({id, title}) =>({
        name: title,
        value:id
@@ -117,7 +117,7 @@ function updateRole(){
 }
 
 function addemployee(){
-    const Employees = db.findAllEmployees()
+    const Employees = removeemployee.findAllEmployees()
     const employeechoice = Employees.map(({id,first_name, last_name}) =>({
         name:`${first_name}${last_name}`,
         value:id
@@ -131,6 +131,6 @@ function addemployee(){
             choices:employeechoice
         }
     ])
-    db.removeemployee(employeeid)
+    removeemployee.removeemployee(employeeid)
     EmployeeStatus()
 }
