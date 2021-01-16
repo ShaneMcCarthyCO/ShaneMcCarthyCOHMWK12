@@ -1,16 +1,33 @@
-USE Employees;
+use employees;
 
------ Department Seeds -----
+INSERT INTO department
+    (name)
+VALUES
+    ('Sales'),
+    ('Engineering'),
+    ('Finance'),
+    ('Legal');
 
-INSERT INTO department (name)
-VALUES ("Accounting"),("Finance"),("Operations"),("IT");
+INSERT INTO role
+    (title, salary, department_id)
+VALUES
+    ('Sales Lead', 100000, 1),
+    ('Salesperson', 80000, 1),
+    ('Lead Engineer', 150000, 2),
+    ('Software Engineer', 120000, 2),
+    ('Account Manager', 160000, 3),
+    ('Accountant', 125000, 3),
+    ('Legal Team Lead', 250000, 4),
+    ('Lawyer', 190000, 4);
 
------ Role Seeds -----
-
-INSERT INTO role (title, salary, department_id)
-VALUES ("Accountant", 45000, 1), ("Chief Accounting Officer", 200000, 1), ("Accountant II", 75000, 1), ("Chief Financial officer", 250000, 2), ("Analyst", 40000, 3), ("Operations Specialist", 50000, 3), ("System Adminstrator", 80000, 4), ("IT Coordinator", 50000, 4), ("IT Manager", 100000, 4);
-
------ Employees Seeds -----
-
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Carrie", "Sanchez", 3, null), ("William", "Toms", 4, null), ("Kelly", "Dante", 6, null), ("Melissa", "Chang", 2, 4), ("Ellie", "Wilson", 1, 3), ("Rosie", "Cole", 1, 3), ("Joe", "Schmidt", 5, 7), ("Zach", "Connor", 7, 10), ("Martin", "Banks", 8, 10); 
+INSERT INTO employee
+    (first_name, last_name, role_id, manager_id)
+VALUES
+    ('John', 'Doe', 1, NULL),
+    ('Mike', 'Chan', 2, 1),
+    ('Ashley', 'Rodriguez', 3, NULL),
+    ('Kevin', 'Tupik', 4, 3),
+    ('Kunal', 'Singh', 5, NULL),
+    ('Malia', 'Brown', 6, 5),
+    ('Sarah', 'Lourd', 7, NULL),
+    ('Tom', 'Allen', 8, 7);
